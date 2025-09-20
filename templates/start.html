@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Start Quiz</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url("/static/math-colourful-rulers-supplies-with-copy-space.jpg") no-repeat center center fixed;
+            background-size: cover;
+            color: #000000ff;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h2 {
+            margin-top: 50px;
+        }
+
+        form {
+            background: rgba(139, 223, 230, 0.6);
+            display: inline-block;
+            padding: 20px 40px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        label {
+            font-size: 18px;
+        }
+
+        input {
+            margin: 10px 0;
+            padding: 8px;
+            width: 220px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: #ff9800;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #e68900;
+        }
+
+        footer {
+            margin-top: auto; /* pushes footer to bottom */
+            padding: 15px 0;
+            font-size: 14px;
+            text-shadow: 1px 1px 3px black;
+            background: rgba(0, 0, 0, 0.3);
+            color: black;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            let name = document.forms["quizForm"]["name"].value.trim();
+            let regNo = document.forms["quizForm"]["reg_no"].value.trim();
+
+            if (name === "" || regNo === "") {
+                alert("Both Name and Register Number are required!");
+                return false;
+            }
+
+            // Register number must be exactly 12 digits
+            let regPattern = /^\d{12}$/;
+            if (!regPattern.test(regNo)) {
+                alert("Register Number must be exactly 12 digits (numbers only).");
+                return false;
+            }
+
+            return true; // allow form submission
+        }
+    </script>
+</head>
+<body>
+    <h2>Welcome to the Quiz</h2>
+    <form name="quizForm" method="POST" onsubmit="return validateForm()">
+        <label>Enter your name: </label><br>
+        <input type="text" name="name" required><br><br>
+
+        <label>Enter your register number: </label><br>
+        <input type="text" name="reg_no" required><br><br>
+
+        <button type="submit">Start</button>
+    </form>
+
+    <footer>
+        <p><i>Powered by Anu Subiksha B G, President of Aptitude Club</i></p>
+    </footer>
+</body>
+</html>
